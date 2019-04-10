@@ -32,12 +32,13 @@ then
 fi
 
 SRC_DIR=$(dirname $0)
-TARGET_IMG="images/target.img"
+TARGET_DIR=$(dirname $TARGET_NAME)
+TARGET_IMG="TARGET_DIR/target.img"
 
 #Create target image, pass base & target images as arguments
 echo
 echo "===================STEP 1: CREATE TARGET IMAGE===================="
-sh -x $SRC_DIR/create_target_img.sh $BASE_IMG $TARGET_IMG
+sh -v $SRC_DIR/create_target_img.sh $BASE_IMG $TARGET_IMG
 
 #Mount target image as loop device
 echo
@@ -48,27 +49,27 @@ echo "Image mounted as:" $LOOP_DEVICE
 #Mount loop device in MNT_DIR
 echo
 echo "===================STEP 3: MOUNT TARGET IMAGE====================="
-sh -x $SRC_DIR/mount_img.sh $LOOP_DEVICE $MNT_DIR
+sh -v $SRC_DIR/mount_img.sh $LOOP_DEVICE $MNT_DIR
 echo $LOOP_DEVICE "mounted in:" $MNT_DIR
 
 #Update Image
 echo
 echo "===================STEP 4: UPDATE TARGET IMAGE===================="
-sh -x $SRC_DIR/update_img.sh $MNT_DIR
-sh -x $SRC_DIR/umount_img.sh $MNT_DIR
+sh -v $SRC_DIR/update_img.sh $MNT_DIR
+sh -v $SRC_DIR/umount_img.sh $MNT_DIR
 echo "Target image updated successfully"
 
 echo
 echo "===================STEP 5: INJECT U-BOOT=========================="
-sh -x $SRC_DIR/inject_uboot.sh $LOOP_DEVICE $UBOOT
+sh -v $SRC_DIR/inject_uboot.sh $LOOP_DEVICE $UBOOT
 echo "U-Boot injected successfully"
 
 echo
 echo "===================STEP 6: SHRINK IMAGE==========================="
-sh -x $SRC_DIR/shrink_img.sh $LOOP_DEVICE $TARGET_IMG $TARGET_NAME
+sh -v $SRC_DIR/shrink_img.sh $LOOP_DEVICE $TARGET_IMG $TARGET_NAME
 echo "Final image output as:" $TARGET_NAME
 
 echo
 echo "===================STEP 7: CLEAN UP==============================="
-sh -x $SRC_DIR/cleanup.sh $LOOP_DEVICE $TARGET_IMG
+sh -v $SRC_DIR/cleanup.sh $LOOP_DEVICE $TARGET_IMG
 echo "Process completed successfully. Exiting script."

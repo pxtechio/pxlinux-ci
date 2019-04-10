@@ -1,0 +1,9 @@
+#/bin/bash
+
+set -e
+
+sh -v /pxlinux/helper_scripts/build_img.sh 						\
+			/pxlinux/images/PixieQP4GCoreImage-2018-11-13.img 	\
+			/pxlinux/mnt 									 	\
+			/pxlinux/images/final.img 							\
+			/pxlinux/uboot/u-boot-dtb-qp4.imx
