@@ -1,6 +1,5 @@
-*.img
-*.zip
-*.imx
-*.dtb
-*.pkg.tar.xz
-assets/*
+**/assets/device-trees/*
+**/assets/images/*
+**/assets/packages/*
+**/assets/uboot/*
+**/assets/update-scripts/*
