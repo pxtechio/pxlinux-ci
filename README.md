@@ -58,7 +58,7 @@ A minimal targets.yaml file can look like this:
 
 ## Running
 Container must run privileged because it needs to create and use loopback devices to mount and modify the .img files.
-Directories containing 'assets' and 'config' must be mounted as volumes.
+Directories containing 'assets' and 'config' must be mounted as volumes. Assuming both exist in your home directory, you can start the build process as:
 
 ```
 docker run 				\
@@ -66,8 +66,8 @@ docker run 				\
 	-it 				\
 	--rm 				\
 	--privileged 			\
-	-v ~/pxlinux/assets:/assets 	\
-	-v ~/pxlinux/config:/config 	\
+	-v ~/assets:/assets 		\
+	-v ~/config:/config 		  \
 	pxtech/pxlinux:latest
 ```
 
