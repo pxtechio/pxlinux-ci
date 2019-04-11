@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ ! -f /etc/.pixierc ]
+then
+    touch /etc/.pixierc
+    (echo d; echo 2; echo n; echo p; echo 2; echo 139264; echo  ; echo w) | fdisk /dev/mmcblk0
+    reboot
+else
+    resize2fs /dev/mmcblk0p2
+    rm /etc/.pixierc
+    mv /boot/boot.ro /boot/boot.scr
+    systemctl disable pixie-install-config.service
+fi

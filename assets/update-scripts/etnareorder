@@ -1,0 +1,3 @@
+#!/bin/bash
+mv /dev/dri/card0 /dev/dri/card2
+ln -sf /dev/dri/card1 /dev/dri/card0

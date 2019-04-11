@@ -1,0 +1,10 @@
+setenv display video=LVDS-1:d video=VGA-1:d video=HDMI-A-1:1920x1080
+setenv display $display consoleblank=0
+setenv mmcroot /dev/mmcblk0p2 rootwait ro rootfstype=ext4
+setenv console ttymxc3
+setenv fdt_addr 0x12000000
+setenv loadaddr 0x10008000
+setenv mmcargs setenv bootargs console=${console},${baudrate} caam 
+setenv mmcargs $mmcargs root=${mmcroot} ${display} vmalloc=320M
+run loadimage
+run mmcboot

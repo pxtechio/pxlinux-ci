@@ -1,0 +1,38 @@
+Targets:
+  PXBoardQP4G: #All options enabled
+    Name: PXBoardQP4G
+    TargetImage: assets/images/PXBoardQP4G-latest.img
+    SkipUpdate: True
+    Assets:
+      BaseImage:
+        path: assets/images/PixieQP4GCoreImage-2018-11-13.img
+        url: https://code-ing.com/pixierepo/release/images/latest/PixieQP4GCoreImage.zip
+      U-Boot:
+        path: assets/uboot/u-boot-dtb-qp4.imx
+      DeviceTrees:
+        path: assets/device-trees #Symlink must be updated by script in Scripts
+      Packages:
+        path: assets/packages
+      Scripts:
+        path: assets/update-scripts
+
+  #Minimal build
+  # PXBoardDUO:
+  #   Name: PXBoardDUP
+  #   TargetImage: assets/images/PXBoardDUO-latest.img
+  #   SkipUpdate: False
+  #   Assets:
+  #     BaseImage:
+  #       path: assets/images/PixieDLCoreImage-2019-01-25.img
+  #       url: https://code-ing.com/pixierepo/release/images/latest/PixieDLCoreImage.zip
+
+
+BuildCommand:
+  cmd: helper_scripts/build_img.sh
+  params:
+    - BaseImage
+    - TargetImage
+    - U-Boot
+    - DeviceTrees
+    - Packages
+    - Scripts

@@ -4,8 +4,27 @@
 set -e
 
 #Install updated packages and remove any artifacts
-pacman -Syu --noconfirm
-pacman -Scc --noconfirm
+pacman -Sy --noconfirm
 
+if [ -f '/skipupdate' ]; then
+	rm /skipupdate
+else
+	pacman -Su --noconfirm
+fi
+
+if [ -d '/packages' ]; then
+	pacman -U /packages/* --noconfirm
+	rm -r /packages
+fi
+
+if [ -d '/update-scripts' ]; then
+	for f in /update-scripts/*.sh; do
+		sh -x $f
+	done
+	rm -r /update-scripts
+fi
+
+
+pacman -Scc --noconfirm
 #Sleep for 3sec to allow for all processes to end.
 sleep 3
