@@ -13,7 +13,10 @@ else
 fi
 
 if [ -d '/packages' ]; then
-	pacman -U /packages/* --noconfirm
+	pacman -U /packages/*pkg.tar.xz --noconfirm
+	if [ -f '/packages/pacman_packages.txt' ]; then
+		pacman -S --noconfirm - < /packages/pacman_packages.txt
+	fi
 	rm -r /packages
 fi
 

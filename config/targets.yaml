@@ -2,7 +2,7 @@ Targets:
   PXBoardQP4G: #All options enabled
     Name: PXBoardQP4G
     TargetImage: assets/images/PXBoardQP4G-latest.img
-    SkipUpdate: True
+    SkipUpdate: False
     Assets:
       BaseImage:
         path: assets/images/PixieQP4GCoreImage-2018-11-13.img
@@ -12,7 +12,7 @@ Targets:
       DeviceTrees:
         path: assets/device-trees #Symlink must be updated by script in Scripts
       Packages:
-        path: assets/packages
+        path: assets/packages #All .pkg.tar.xz files and packages listed in pacman_packages.txt will be installed.
       Scripts:
         path: assets/update-scripts
 
