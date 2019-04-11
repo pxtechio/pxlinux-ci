@@ -53,12 +53,32 @@ BuildCommand:
 - Assets/Scripts: Path to custom scripts to modify base image. This stage can perform updates to services, fstab, bootscript, etc.
 
 ### Minumal config
-A minimal targets.yaml file can look like this:
+A minimal targets.yaml file is provided as part of this project and looks like this:
+```
+Targets:
+  PXBoardQP4G:
+    Name: PXBoardQP4G
+    TargetImage: assets/images/PXBoardQP4G-latest.img
+    SkipUpdate: False
+    Assets:
+      BaseImage:
+        path: assets/images/PixieQP4GCoreImage-2018-11-13.img
+        url: https://code-ing.com/pixierepo/release/images/latest/PixieQP4GCoreImage.zip
 
+BuildCommand:
+  cmd: helper_scripts/build_img.sh
+  params:
+    - BaseImage
+    - TargetImage
+    - U-Boot
+    - DeviceTrees
+    - Packages
+    - Scripts
+```
 
 ## Running
 Container must run privileged because it needs to create and use loopback devices to mount and modify the .img files.
-Directories containing 'assets' and 'config' must be mounted as volumes. Assuming both exist in your home directory, you can start the build process as:
+Directories containing 'assets' and 'config' must be mounted as volumes. Assuming this project exists in your home directory, you can start the build process as:
 
 ```
 docker run 				\
@@ -66,8 +86,8 @@ docker run 				\
 	-it 				\
 	--rm 				\
 	--privileged 			\
-	-v ~/assets:/assets 		\
-	-v ~/config:/config 		  \
+	-v ~/pxlinux-ci/assets:/assets 		\
+	-v ~/pxlinux-ci/config:/config 		  \
 	pxtech/pxlinux:latest
 ```
 
