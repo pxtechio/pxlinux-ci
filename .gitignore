@@ -3,3 +3,4 @@
 *.imx
 *.dtb
 *.pkg.tar.xz
+assets/*
