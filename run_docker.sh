@@ -6,6 +6,6 @@ docker run 				\
 	-it 				\
 	--rm 				\
 	--privileged 			\
-	-v ~/pxlinux/assets:/assets 	\
-	-v ~/pxlinux/config:/config 	\
+	-v ~/pxlinux-ci/assets:/assets 	\
+	-v ~/pxlinux-ci/config:/config 	\
 	pxtech/pxlinux:latest
