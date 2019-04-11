@@ -1,5 +1,5 @@
-**/assets/device-trees/*
-**/assets/images/*
-**/assets/packages/*
-**/assets/uboot/*
-**/assets/update-scripts/*
+/assets/device-trees/*
+/assets/images/*
+/assets/packages/*
+/assets/uboot/*
+/assets/update-scripts/*
