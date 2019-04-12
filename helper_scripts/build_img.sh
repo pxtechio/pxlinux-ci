@@ -6,7 +6,7 @@ BASE_IMG=
 MNT_DIR=
 TARGET_NAME=
 UBOOT=
-DEVICE_TREES=
+ROOTFS=
 PACKAGES=
 SCRIPTS=
 SKIP_UPDATE=
@@ -30,8 +30,8 @@ do
 	    UBOOT="${i#*=}"
 	    shift # past argument=value
 	    ;;
-	    -d=*|--DeviceTrees=*)
-	    DEVICE_TREES="${i#*=}"
+	    -f=*|--RootFS=*)
+	    ROOTFS="${i#*=}"
 	    shift # past argument=value
 	    ;;
 	    -p=*|--Packages=*)
@@ -90,13 +90,13 @@ sh -x $SRC_DIR/mount_img.sh $LOOP_DEVICE $MNT_DIR
 echo $LOOP_DEVICE "mounted in:" $MNT_DIR
 
 echo
-echo "===================STEP 4: COPY DEVICE TREES======================"
-if test -z "$DEVICE_TREES"
+echo "===================STEP 4: COPY FILES======================"
+if test -z "$ROOTFS"
 then
 	echo "No files to copy."
 else
-	cp $DEVICE_TREES/* $MNT_DIR/boot/
-	echo "Device tree files copied."
+	cp -r $ROOTFS/* $MNT_DIR/
+	echo "All files copied."
 fi
 
 echo
