@@ -125,6 +125,7 @@ def build_cmd(target,cmd):
 		params += [p]
 	if target['SkipUpdate']:
 		params+=['--SkipUpdate=True']
+	params+=['--MountDir=mnt']
 	return params
 
 

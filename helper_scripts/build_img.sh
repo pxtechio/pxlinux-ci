@@ -81,8 +81,7 @@ sh -x $SRC_DIR/create_target_img.sh $BASE_IMG $TARGET_IMG
 
 echo
 echo "===================STEP 2: MOUNT LOOP DEVICE======================"
-LOOP_DEVICE=$(sh -v $SRC_DIR/mount_lo.sh $TARGET_IMG | tail -1)
-echo "Image mounted as:" $LOOP_DEVICE
+LOOP_DEVICE=$(sh -x $SRC_DIR/mount_lo.sh $TARGET_IMG | tail -1 | awk '{print $1}' | sed 's/://g')
 
 echo
 echo "===================STEP 3: MOUNT TARGET IMAGE====================="

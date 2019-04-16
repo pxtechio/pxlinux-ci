@@ -5,6 +5,7 @@ set -e
 
 #Install updated packages and remove any artifacts
 pacman -Sy --noconfirm
+pacman-key --init
 
 if [ -f '/skipupdate' ]; then
 	rm /skipupdate
@@ -13,7 +14,7 @@ else
 fi
 
 if [ -d '/packages' ]; then
-	pacman -U /packages/*pkg.tar.xz --noconfirm
+	pacman -U /packages/*pkg.tar.xz --noconfirm --force
 	if [ -f '/packages/pacman_packages.txt' ]; then
 		pacman -S --noconfirm - < /packages/pacman_packages.txt
 	fi

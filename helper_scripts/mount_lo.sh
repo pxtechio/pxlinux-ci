@@ -17,6 +17,8 @@ DEFAULT_LO="/dev/loop0"
 if [ ! -e $DEFAULT_LO ]; then mknod $DEFAULT_LO b 7 0; fi
 LOOP_DEVICE=$(losetup --find --show --partscan $TARGET_IMG)
 
+echo "Loop device: " $LOOP_DEVICE
+
 #Create a loop device for each partition in $LOOP_DEVICE
 PARTITIONS=$(lsblk --raw --output "MAJ:MIN" --noheadings ${LOOP_DEVICE} | tail -n +2)
 COUNTER=1

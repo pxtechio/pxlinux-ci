@@ -14,5 +14,5 @@ SRC_DIR=$(dirname $0)
 
 #Copy and execute update script. Clean afterwards.
 cp $SRC_DIR/update_clean.sh $MNT_DIR
-arch-chroot $MNT_DIR /bin/bash -c "./update_clean.sh"
+arch-chroot $MNT_DIR /bin/bash -c -x "./update_clean.sh"
 rm $MNT_DIR/update_clean.sh
