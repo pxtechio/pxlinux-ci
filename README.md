@@ -29,10 +29,10 @@ docker build .
 Before running the image, make sure you have a valid config/targets.yaml file. You can specify more than one target.
 ### Mandatory tags
 #### Targets
-- Name: Name of your target.
-- TargetImage: Name of the file that will be created.
-- SkipUpdate: Boolean value. Make true if you want to skip package updates.
-- Assets/BaseImage: Path to base image that will be updated.
+- **Name**: Name of your target.
+- **TargetImage**: Name of the file that will be created.
+- **SkipUpdate**: Boolean value. Make true if you want to skip package updates.
+- **Assets/BaseImage**: Path to base image that will be updated.
 
 #### Commands
 Currently, only build command is supported:
@@ -42,15 +42,17 @@ BuildCommand:
     - BaseImage
     - TargetImage
     - U-Boot
+    - RootFS
     - DeviceTrees
     - Packages
     - Scripts
     
 ### Optional
-- Assets/U-Boot: Path to custom U-Boot file. This will be injected from sector 1.
-- Assets/DeviceTrees: Path to .dtb files that will be copied to /boot directory. Symlinks are NOT updated by this stage.
-- Assets/Packages: Path to packages that will be installed as part of the new image. A pacman_packages.txt can be provided to install from configured pacman repos.
-- Assets/Scripts: Path to custom scripts to modify base image. This stage can perform updates to services, fstab, bootscript, etc.
+- **Assets/U-Boot**: Path to custom U-Boot file. This will be injected from sector 1.
+- **Assets/DeviceTrees**: Path to .dtb files that will be copied to /boot directory. Symlinks are NOT updated by this stage.
+- **Assets/RootFS**: Directory structure in this path is copied to '/'. Destination can't be symlink.
+- **Assets/Packages**: Path to packages that will be installed as part of the new image. A pacman_packages.txt can be provided to install from configured pacman repos.
+- **Assets/Scripts**: Path to custom scripts to modify base image. This stage can perform updates to services, fstab, bootscript, etc.
 
 ### Minumal config
 A minimal targets.yaml file is provided as part of this project and looks like this:
