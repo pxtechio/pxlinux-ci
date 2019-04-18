@@ -50,7 +50,7 @@ fsck -fy $ROOT_LO
 zerofree $ROOT_LO
 
 #This is ugly, fix later:
-PART_BLOCKS=$(fdisk -l /dev/loop0 | grep /dev/loop0p2 | awk '{print $3}')
+PART_BLOCKS=$(fdisk -l $LOOP_DEVICE | grep $ROOT_LO | awk '{print $3}')
 PART_BYTES=$(($PART_BLOCKS*512))
 PART_COUNT=$(($PART_BYTES/16777216))
 PART_COUNT=$(($PART_COUNT+1))
