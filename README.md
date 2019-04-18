@@ -26,6 +26,12 @@ docker build .
 
 ## Preparing the run
 
+### Dependencies
+
+Your host machine must have qemu-user-static installed and the interpreter correctly registered to binfmt_misc .
+If you are running Arch Linux, you can install this package from the AUR.
+
+
 Before running the image, make sure you have a valid config/targets.yaml file. You can specify more than one target.
 ### Mandatory tags
 #### Targets
@@ -90,7 +96,7 @@ docker run 				\
 	--privileged 			\
 	-v ~/pxlinux-ci/assets:/assets 		\
 	-v ~/pxlinux-ci/config:/config 		  \
-	pxtech/pxlinux:latest
+	pxtech/pxlinux-ci:latest
 ```
 
 ## Contribute
