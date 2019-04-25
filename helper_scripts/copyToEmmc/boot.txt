@@ -1,0 +1,14 @@
+setenv display mxcfb0:off
+setenv display $display video=mxcfb1:off video=mxcfb2:dev=lcd,BEA-WVGA,if=RGB666
+setenv display $display consoleblank=0
+setenv mmcroot /dev/mmcblk2p2 rootwait ro rootfstype=ext4
+setenv console ttymxc3
+setenv fdt_addr 0x12000000
+setenv loadaddr 0x10008000
+setenv mmcargs setenv bootargs console=${console},${baudrate} caam
+setenv mmcargs $mmcargs root=${mmcroot} video=${display} vmalloc=264M
+setenv image zImage
+setenv fdt_file imx6-pixiepro.dtb
+run loadimage
+run mmcboot
+
