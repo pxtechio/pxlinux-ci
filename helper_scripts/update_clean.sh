@@ -14,7 +14,12 @@ else
 fi
 
 if [ -d '/packages' ]; then
-	pacman -U /packages/*pkg.tar.xz --noconfirm --force
+	pkgs=`find ./ -maxdepth 1 -name "*.pkg.tar.xz"`
+	if [ ${#pkgs[@]} -gt 0 ]; then 
+	then 
+		pacman -U /packages/*pkg.tar.xz --noconfirm --force
+	fi 
+	
 	if [ -f '/packages/pacman_packages.txt' ]; then
 		pacman -S --noconfirm - < /packages/pacman_packages.txt
 	fi
