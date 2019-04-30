@@ -14,8 +14,8 @@ else
 fi
 
 if [ -d '/packages' ]; then
-	pkgs=`find ./ -maxdepth 1 -name "*.pkg.tar.xz"`
-	if [ ${#pkgs[@]} -gt 0 ]; then  
+	pkgs=`ls -1 *.pkg.tar.xz 2>/dev/null | wc -l`
+	if [ $pkgs != 0 ]; then  
 		pacman -U /packages/*pkg.tar.xz --noconfirm --force
 	fi 
 	
