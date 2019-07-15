@@ -4,13 +4,13 @@
 set -e
 
 #Install updated packages and remove any artifacts
-pacman -Sy --noconfirm
+pacman -Sy --noconfirm --quiet
 pacman-key --init
 
 if [ -f '/skipupdate' ]; then
 	rm /skipupdate
 else
-	pacman -Su --noconfirm
+	pacman -Su --noconfirm --quiet
 fi
 
 if [ -d '/packages' ]; then
