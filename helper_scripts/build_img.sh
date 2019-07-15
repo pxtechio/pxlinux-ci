@@ -11,6 +11,8 @@ PACKAGES=
 SCRIPTS=
 SKIP_UPDATE=
 
+LOG_PATH='~/build.log'
+
 for i in "$@"
 do
 	case $i in
@@ -77,7 +79,7 @@ TARGET_IMG="$TARGET_DIR/target.img"
 
 echo
 echo "===================STEP 1: CREATE TARGET IMAGE===================="
-sh $SRC_DIR/create_target_img.sh $BASE_IMG $TARGET_IMG
+sh $SRC_DIR/create_target_img.sh $BASE_IMG $TARGET_IMG >> LOG_PATH
 
 echo
 echo "===================STEP 2: MOUNT LOOP DEVICE======================"
@@ -85,7 +87,7 @@ LOOP_DEVICE=$(sh $SRC_DIR/mount_lo.sh $TARGET_IMG | tail -1 | awk '{print $1}' |
 
 echo
 echo "===================STEP 3: MOUNT TARGET IMAGE====================="
-sh -x $SRC_DIR/mount_img.sh $LOOP_DEVICE $MNT_DIR
+sh  $SRC_DIR/mount_img.sh $LOOP_DEVICE $MNT_DIR >> LOG_PATH
 echo $LOOP_DEVICE "mounted in:" $MNT_DIR
 
 echo
@@ -131,8 +133,8 @@ else
 	echo "Pacman update will NOT be performed."
 fi
 
-sh $SRC_DIR/update_img.sh $MNT_DIR
-sh $SRC_DIR/umount_img.sh $MNT_DIR
+sh $SRC_DIR/update_img.sh $MNT_DIR >> LOG_PATH
+sh $SRC_DIR/umount_img.sh $MNT_DIR >> LOG_PATH
 echo "Target image updated successfully"
 
 echo
@@ -141,16 +143,16 @@ if test -z "$UBOOT"
 then
 	echo "No U-Boot file to inject."
 else
-	sh $SRC_DIR/inject_uboot.sh $LOOP_DEVICE $UBOOT
+	sh $SRC_DIR/inject_uboot.sh $LOOP_DEVICE $UBOOT >> LOG_PATH
 	echo "U-Boot injected successfully."
 fi
 
 echo
 echo "===================STEP 9: SHRINK IMAGE==========================="
-sh $SRC_DIR/shrink_img.sh $LOOP_DEVICE $TARGET_IMG $TARGET_NAME
+sh $SRC_DIR/shrink_img.sh $LOOP_DEVICE $TARGET_IMG $TARGET_NAME >> LOG_PATH
 echo "Final image output as:" $TARGET_NAME
 
 echo
 echo "===================STEP 10: CLEAN UP==============================="
-sh $SRC_DIR/cleanup.sh $LOOP_DEVICE $TARGET_IMG
+sh $SRC_DIR/cleanup.sh $LOOP_DEVICE $TARGET_IMG >> LOG_PATH
 echo "Process completed successfully. Exiting script."

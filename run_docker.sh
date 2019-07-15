@@ -4,7 +4,7 @@
 docker run 				\
 	--user=root 			\
 	-it 				\
-	--rm 				\
+	--rm  -q				\
 	--privileged 			\
 	-v ~/pxlinux-ci/assets:/assets 	\
 	-v ~/pxlinux-ci/config:/config 	\
