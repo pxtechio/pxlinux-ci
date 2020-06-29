@@ -18,7 +18,7 @@ if [ -d '/packages' ]; then
         pkgs=`ls -1 /packages/*.pkg.tar.xz 2>/dev/null | wc -l`
         if [ $pkgs != 0 ]; then
                 echo "Installing packages from pkg.tar.xz files"
-                pacman -U /packages/*pkg.tar.xz --noconfirm --force
+                pacman -U /packages/*pkg.tar.xz --noconfirm
         fi
 
         if [ -f '/packages/pacman_packages.txt' ]; then
