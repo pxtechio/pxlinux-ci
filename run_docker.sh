@@ -4,8 +4,8 @@
 docker run 				\
 	--user=root 			\
 	-it 				\
-	--rm  -q				\
+	--rm  				\
 	--privileged 			\
-	-v ~/pxlinux-ci/assets:/assets 	\
-	-v ~/pxlinux-ci/config:/config 	\
+	-v ~/pxlinux/pxboard/base-5/assets:/assets 	\
+	-v ~/pxlinux/pxboard/base-5/config:/config 	\
 	pxtech/pxlinux:latest

@@ -18,7 +18,7 @@ if [ -d '/packages' ]; then
         pkgs=`ls -1 /packages/*.pkg.tar.xz 2>/dev/null | wc -l`
         if [ $pkgs != 0 ]; then
                 echo "Installing packages from pkg.tar.xz files"
-                pacman -U /packages/*pkg.tar.xz --noconfirm
+		yes | pacman -U /packages/*pkg.tar.xz
         fi
 
         if [ -f '/packages/pacman_packages.txt' ]; then
@@ -45,4 +45,5 @@ fi
 
 pacman -Scc --noconfirm
 #Sleep for 3sec to allow for all processes to end.
+systemctl enable pixie-install-config.service
 sleep 3

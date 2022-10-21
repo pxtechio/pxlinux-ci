@@ -9,5 +9,5 @@ pacman -S --noconfirm 		\
 	git						\
 	sudo					\
 	python					\
-	python-pyaml
+	python-pyaml			
 	

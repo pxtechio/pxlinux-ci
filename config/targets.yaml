@@ -1,12 +1,19 @@
 Targets:
-  PXBoardQP4G:
-    Name: PXBoardQP4G
-    TargetImage: assets/images/PXBoardQP4G-latest.img
+  #  PXBoardQP4G:
+  #    Name: PXBoardQP4G
+  #    TargetImage: assets/images/PXBoardQP4G-2022-10-19.img
+  #    SkipUpdate: False
+  #    Assets:
+  #      BaseImage:
+  #        path: assets/images/updated.img
+  #
+  PXBoardQ2G:
+    Name: PXBoardQ2G
+    TargetImage: assets/images/PXBoardQ2G-2022-10-20.img
     SkipUpdate: False
     Assets:
       BaseImage:
-        path: assets/images/PixieQP4GCoreImage-2018-11-13.img
-        url: https://code-ing.com/pixierepo/release/images/latest/PixieQP4GCoreImage.zip
+        path: assets/images/updated.img
 
 BuildCommand:
   cmd: helper_scripts/build_img.sh
